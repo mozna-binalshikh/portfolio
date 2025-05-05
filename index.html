@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مكتب السفريات</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <!-- الشريط الجانبي -->
+      <aside class="sidebar">
+        <h2>من نحن</h2>
+        <table>
+          <tr><td><strong>الاسم:</strong></td><td>مكتب المسافر الذهبي</td></tr>
+          <tr><td><strong>الخبرة:</strong></td><td>15 سنة في تنظيم الرحلات</td></tr>
+          <tr><td><strong>الموقع:</strong></td><td>الرياض، السعودية</td></tr>
+        </table>
+
+        <h2>تواصل معنا</h2>
+        <form onsubmit="sendMessage(event)">
+          <input type="text" placeholder="الاسم" required />
+          <input type="email" placeholder="البريد الإلكتروني" required />
+          <textarea placeholder="رسالتك" rows="4" required></textarea>
+          <button type="submit">إرسال</button>
+        </form>
+
+        <h2>واتساب</h2>
+        <p><a href="https://wa.me/774970812" target="_blank">+774970812</a></p>
+
+        <h2>الأقسام</h2>
+        <button onclick="showSection('accommodation')">إقامة</button>
+        <button onclick="showSection('tourism')">سياحة</button>
+        <button onclick="showSection('hajj')">حج وعمرة</button>
+      </aside>
+
+      <!-- المحتوى -->
+      <main class="main-content">
+        <div id="home">
+          <h1>مكتب السفريات أونلاين</h1>
+        </div>
+
+        <!-- الإقامة -->
+        <div id="accommodation" class="section" style="display:none;">
+          <h2>الإقامة</h2>
+          <ul>
+            <li>الإمارات - 150 ريال للشخص</li>
+            <li>مصر - 100 ريال للشخص</li>
+            <li>تركيا - 200 ريال للشخص</li>
+          </ul>
+          <form onsubmit="confirmBooking(event)">
+            <input type="text" placeholder="اسمك" required />
+            <input type="text" placeholder="الدولة المطلوبة" required />
+            <input type="date" placeholder="تاريخ الرحلة" required />
+            <input type="date" placeholder="تاريخ العودة" required />
+            <input type="number" placeholder="عدد الأشخاص" id="accommodationPersons" min="1" required oninput="calculateTotal('accommodation')" />
+            <p>السعر للشخص: 150 ريال</p>
+            <p>الإجمالي: <span id="accommodationTotal">0</span> ريال</p>
+            <button type="submit">احجز الآن</button>
+            <button type="button" onclick="makePayment('accommodation')">إتمام الدفع</button>
+            <button onclick="goHome()">العودة</button>
+          </form>
+        </div>
+
+        <!-- السياحة -->
+        <div id="tourism" class="section" style="display:none;">
+          <h2>السياحة</h2>
+          <ul>
+            <li>فرنسا - 300 ريال للشخص</li>
+            <li>ماليزيا - 250 ريال للشخص</li>
+            <li>أذربيجان - 200 ريال للشخص</li>
+          </ul>
+          <form onsubmit="confirmBooking(event)">
+            <input type="text" placeholder="اسمك" required />
+            <input type="text" placeholder="الدولة السياحية" required />
+            <input type="date" placeholder="تاريخ الرحلة" required />
+            <input type="date" placeholder="تاريخ العودة" required />
+            <input type="number" placeholder="عدد الأشخاص" id="tourismPersons" min="1" required oninput="calculateTotal('tourism')" />
+            <p>السعر للشخص: 300 ريال</p>
+            <p>الإجمالي: <span id="tourismTotal">0</span> ريال</p>
+            <button type="submit">احجز الآن</button>
+            <button type="button" onclick="makePayment('tourism')">إتمام الدفع</button>
+            <button onclick="goHome()">العودة</button>
+          </form>
+        </div>
+
+        <!-- الحج والعمرة -->
+        <div id="hajj" class="section" style="display:none;">
+          <h2>الحج والعمرة</h2>
+          <ul>
+            <li>العمرة فقط - 2000 ريال للشخص</li>
+            <li>الحج والعمرة - 8000 ريال للشخص</li>
+            <li>أشهر الحج: شوال، ذو القعدة، ذو الحجة</li>
+          </ul>
+          <form onsubmit="confirmBooking(event)">
+            <input type="text" placeholder="اسمك" required />
+            <select required id="hajjOption" onchange="calculateTotal('hajj')">
+              <option value="">اختر الخدمة</option>
+              <option value="2000">العمرة فقط</option>
+              <option value="8000">الحج والعمرة</option>
+            </select>
+            <input type="date" placeholder="تاريخ الرحلة" required />
+            <input type="date" placeholder="تاريخ العودة" required />
+            <input type="number" placeholder="عدد الأشخاص" id="hajjPersons" min="1" required oninput="calculateTotal('hajj')" />
+            <p>الإجمالي: <span id="hajjTotal">0</span> ريال</p>
+            <button type="submit">احجز الآن</button>
+            <button type="button" onclick="makePayment('hajj')">إتمام الدفع</button>
+            <button onclick="goHome()">العودة</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="style.js"></script>
+</body>
+</html>
+
+
+
